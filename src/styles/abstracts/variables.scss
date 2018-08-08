@@ -1,0 +1,22 @@
+$font: "henriette",sans-serif;
+
+$bg: #FFFFFA;
+$linkColor: #FAF398;
+// $linkColor: #FDF7AC;
+// $linkColor: #FDF260;
+// $textColor: #A19BB0;
+$textColor: #544E63;
+$captionColor: rgba(#A19BB0, 0.71);
+
+$mediumBreakpoint: 720px;
+$largeBreakpoint: 1000px;
+$extraLargeBreakpoint: 1200px;
+$hugeBreakpoint: 1350px;
+
+$breakpoints: (
+  'tiny': (max-width: 360px),
+  'medium': (min-width: $mediumBreakpoint),
+  'large': (min-width: $largeBreakpoint),
+  'extraLarge': (min-width: $extraLargeBreakpoint),
+  'huge': (min-width: $hugeBreakpoint),
+);

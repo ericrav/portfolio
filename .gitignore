@@ -1,0 +1,6 @@
+/bower_components/
+/dist/
+/node_modules/
+*.log
+.DS_Store
+env.sh

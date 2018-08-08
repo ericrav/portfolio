@@ -1,0 +1,53 @@
+{
+    "env": {
+        "browser": true,
+        "node": true,
+        "commonjs": true,
+        "es6": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "jsx": true
+        },
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "indent": [
+            "error",
+            2,
+            { "SwitchCase": 1 }
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "no-console": "off",
+        "no-unused-vars": "warn",
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "react/jsx-uses-react": "error",
+        "react/jsx-uses-vars": "error",
+        "semi": [
+            "error",
+            "always"
+        ]
+    },
+    "settings": {
+        "import/resolver": {
+            "webpack": {
+              "config": "webpack.development.config.js"
+            }
+        }
+    }
+}

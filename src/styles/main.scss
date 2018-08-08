@@ -1,0 +1,215 @@
+@import 'abstracts/variables.scss';
+@import 'abstracts/mixins.scss';
+@import 'base/reset.scss';
+
+@import 'components/Heading.scss';
+
+html {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+
+  @include respond-to('large') {
+    font-size: 22px;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  color: $textColor;
+  font-family: $font;
+  font-kerning: normal;
+  -moz-font-feature-settings: "kern", "liga", "clig", "calt";
+  -ms-font-feature-settings: "kern", "liga", "clig", "calt";
+  -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
+  font-feature-settings: "kern", "liga", "clig", "calt";
+}
+
+html, body {
+  background: $bg;
+}
+
+.gallery {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba($bg, 0.95);
+
+  &__image {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    right: 2rem;
+    bottom: 2rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+p {
+  font-size: 1rem;
+  max-width: 30rem;
+  // margin: 1em auto;
+  margin-left: 2rem;
+  line-height: 1.45;
+  -moz-font-feature-settings: "onum", "kern", "liga", "clig", "calt";
+  -ms-font-feature-settings: "onum", "kern", "liga", "clig", "calt";
+  -webkit-font-feature-settings: "onum", "kern", "liga", "clig", "calt";
+  font-feature-settings: "onum", "kern", "liga", "clig", "calt";
+
+  .ntf {
+    -moz-font-feature-settings: "lnum", "kern", "liga", "clig", "calt";
+    -ms-font-feature-settings: "lnum", "kern", "liga", "clig", "calt";
+    -webkit-font-feature-settings: "lnum", "kern", "liga", "clig", "calt";
+    font-feature-settings: "lnum", "kern", "liga", "clig", "calt";
+  }
+}
+
+ul {
+  max-width: 30rem;
+  margin: 0.25em auto;
+}
+
+p + ul {
+  margin-top: -0.5em;
+}
+
+a {
+  color: #2D2A36;
+  text-decoration: none;
+  border-bottom: 1px solid $linkColor;
+  box-shadow: inset 0 -4px 0 $linkColor;
+  transition: background 0.3s ease-out;
+  background: white;
+
+  &:hover {
+    background: $linkColor;
+  }
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-style: italic;
+  line-height: 1;
+  margin: 2em 0 0;
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  margin: 2em 0 0;
+
+  &__title {
+
+    h3 {
+      margin: 0;
+    }
+
+    @include respond-to('large') {
+      flex: 0 0 34rem;
+    }
+  }
+
+  &__content {
+  }
+
+  &__images {
+    display: flex;
+    flex-wrap: wrap;
+    // margin-left: 4rem;
+
+    &__image {
+      flex-shrink: 1;
+      display: inline-block;
+      cursor: pointer;
+      height: 80px;
+      width: auto;
+      margin-right: 0.5em;
+      border: 4px solid transparent;
+      transition: border-color 0.3s ease-out;
+
+      &:hover {
+        border-color: $linkColor;
+        background: $linkColor;
+        img {
+          opacity: 0.66;
+        }
+      }
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+
+      img {
+        display: block;
+        height: 100%;
+        width: auto;
+        transition: opacity 0.3s ease-out;
+      }
+    }
+
+    @include respond-to('large') {
+      flex-wrap: wrap;
+      height: 0;
+      flex: 0 1 20rem;
+
+      &__image:first-child {
+        height: auto;
+        width: 100%;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+
+        @include respond-to('huge') {
+          width: 300px;
+        }
+
+      }
+    }
+
+  }
+
+  @include respond-to('large') {
+    width: 54rem;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+
+    &__content {
+    }
+
+    &__images {
+    }
+  }
+}
+
+.project_link {
+  font-size: 0.8em;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: $linkColor;
+}
+
+.container {
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+.tags {
+  text-transform: uppercase;
+  color: $captionColor;
+  font-size: 0.8em;
+  letter-spacing: 0.1em;
+}

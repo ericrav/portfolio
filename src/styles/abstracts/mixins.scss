@@ -1,0 +1,216 @@
+/// Responsive breakpoint manager
+/// @access public
+/// @param {String} $breakpoint - Breakpoint
+/// @requires $breakpoints
+@mixin respond-to($breakpoint) {
+  $raw-query: map-get($breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: if(
+      type-of($raw-query) == 'string',
+      unquote($raw-query),
+      inspect($raw-query)
+    );
+
+    @media #{$query} {
+      @content;
+    }
+  } @else {
+    @error 'No value found for `#{$breakpoint}`. '
+         + 'Please make sure it is defined in `$breakpoints` map.';
+  }
+}
+
+@mixin noSelection() {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin underline($color, $background) {
+  text-decoration: none;
+  background-image: linear-gradient($background, $background), linear-gradient($background, $background), linear-gradient($color, $color);
+  background-size: 0.05em 9%, 0.05em 9%, 5% 10%;
+  background-repeat: no-repeat, no-repeat, repeat-x;
+  background-position: 0% 93%, 100% 93%, 0% 93%;
+  text-shadow: 0.03em 0 $background, -0.03em 0 $background, 0 0.03em $background, 0 -0.03em $background, 0.06em 0 $background, -0.06em 0 $background, 0.09em 0 $background, -0.09em 0 $background, 0.12em 0 $background, -0.12em 0 $background, 0.15em 0 $background, -0.15em 0 $background;
+}
+
+@mixin barShadow() {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+}
+
+@mixin cardShadow() {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+@mixin cardShadowUp() {
+  box-shadow: 0 -1px 3px rgba(0,0,0,0.12), 0 -1px 2px rgba(0,0,0,0.24);
+}
+
+@mixin modalShadow() {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.45), 0 -2px 2px rgba(0,0,0,0.08);
+}
+
+@mixin raisedShadow() {
+  box-shadow: 0 2px 2px rgba(0,0,0,0.25), 0 -1px 1px rgba(0,0,0,0.04);
+}
+
+@mixin raisedShadowActive() {
+  box-shadow: 0 4px 13px 0 rgba(0, 0, 0, 0.2);
+}
+
+@mixin sectionTitle() {
+  font-family: $primaryFont;
+  font-weight: 700;
+  color: $textGray;
+  font-size: 14px;
+  letter-spacing: 0.1px;
+  line-height: 20px;
+}
+
+// source: http://www.sitepoint.com/sass-mixins-kickstart-project/
+@mixin prefix($map, $vendors: webkit moz ms o) {
+  @each $prop, $value in $map {
+        @if $vendors {
+          @each $vendor in $vendors {
+            #{"-" + $vendor + "-" + $prop}: #{$value};
+          }
+        }
+        // Dump regular property anyway
+        #{$prop}: #{$value};
+  }
+}
+
+// source: http://www.sitepoint.com/sass-mixin-css-triangles/
+
+// Size helper mixin
+// ---
+// @param [number] $width: width
+// @param [number] $height ($width): height
+// ---
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+// [Private] 
+// Position helper mixin
+// Article about it: http://hugogiraudel.com/2013/08/05/offsets-sass-mixin/
+// ---
+// @param [string] $position: position type
+// @param [list] $args: list of offsets and values
+// ---
+@mixin _position($position, $args) {
+  @each $o in top right bottom left {
+    $i: index($args, $o);
+    @if $i
+    and $i + 1 <= length($args)
+    and type-of( nth($args, $i + 1) ) == number {
+      #{$o}: nth($args, $i + 1);
+    }
+  }
+  position: $position;
+}
+
+// Absolute positioning helper mixin
+// Article about it: http://hugogiraudel.com/2013/08/05/offsets-sass-mixin/
+// ---
+// @param [list] $args: list of offsets and values
+// ---
+@mixin absolute($args) {
+  @include _position(absolute, $args);
+}
+
+// Arrow helper mixin
+// ---
+// @param [string] $direction: arrow direction
+// @param [list] $position: list of offsets and values
+// @param [color] $color (inherit): arrow color
+// @param [number] $size (1em): arrow size
+// ---
+@mixin triangle($direction, $position, $color: currentColor, $size: 1em) {
+  // Make sure the direction is valid
+  @if not index(top right bottom left, $direction) {
+    @warn "Direction must be one of top, right, bottom or left.";
+  }
+
+  @else {
+    @include absolute($position); // Position
+    @include size(0); // Size
+    content: '';
+    z-index: inherit;
+
+    border-#{opposite-direction($direction)}: $size * 1.5 solid $color;
+    $perpendicular-borders: $size solid transparent;
+    
+    @if $direction == top or $direction == bottom {
+      border-left:   $perpendicular-borders;
+      border-right:  $perpendicular-borders;
+    }
+
+    @else if $direction == right or $direction == left {
+      border-bottom: $perpendicular-borders;
+      border-top:    $perpendicular-borders;
+    }
+  }
+}
+
+// source: http://www.sitepoint.com/sass-mixins-kickstart-project/
+@function opposite-direction($directions) {
+      $opposite-directions: ();
+      $direction-map: (
+    'top': 'bottom',
+    'right': 'left',
+    'bottom': 'top',
+    'left': 'right',
+    'ltr': 'rtl',
+    'rtl': 'ltr'
+  );
+
+  @each $direction in $directions {
+    $opposite-direction: map-get($direction-map, $direction);
+        @if $opposite-direction != null { 
+      $opposite-directions: append($opposite-directions, #{$opposite-direction});
+    }
+    @else {
+      @warn "No opposite direction can be found for `#{$direction}`.";
+    }
+  }
+
+  @return $opposite-directions;
+}
+
+// source: https://gist.github.com/roadhump/f0f71c93ded2ecb8ab2f
+@mixin react-animation-enter($transition...) {
+
+    &-enter {
+        @content;
+
+        &-active {
+            transition: $transition;
+        }
+    }
+}
+
+@mixin react-animation-leave($transition...) {
+
+    &-leave {
+        transition: $transition;
+        @content;
+    }
+}
+
+@mixin react-animation-from {
+    @content;
+}
+
+@mixin react-animation-to {
+
+    &-active {
+        @content;
+    }
+}
