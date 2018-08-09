@@ -39,6 +39,7 @@ class App extends Component {
 
           <h3>Colophon</h3>
           <p>Typeset in <a target='_blank' href='https://www.typejockeys.com/font/henriette'>Henriette</a> from Typejockeys.</p>
+          <p>The code for this website is on <a target='_blank' href='https://github.com/ericrav/portfolio'>GitHub</a>.</p>
 
         </div>
       </div>
