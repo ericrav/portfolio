@@ -1,4 +1,4 @@
-precision mediump float;
+precision highp float;
 
 #define BG vec3( 1., 1., 0.98 )
 #define LC vec3( 0.18, 0.16, 0.21 )
@@ -10,9 +10,7 @@ uniform float sharpness;
 uniform float freq;
 
 float random (in vec2 st) {
-    return fract(sin(dot(st.xy,
-                         vec2(12.9898,78.233)))*
-        43758.5453123);
+  return fract(sin(dot(st.xy,vec2(12.9898,78.233))) * 43758.5453);
 }
 
 // Based on Morgan McGuire @morgan3d
@@ -61,8 +59,6 @@ void main() {
   vec2 st = uv * 2. - 1.;
   vec3 color = BG;
 
-  float sr = sharpness / 8.;
-
   float y                = sin( 1. * st.x * 11. + time * 2. );
   if ( freq >= 220. ) y *= sin( 1. * st.x * 22. + time * 2. );
   if ( freq >= 330. ) y *= sin( 1. * st.x * 33. + time * 2. );
@@ -75,7 +71,7 @@ void main() {
   float amp = 0.5 * ends2;
   y *= amp;
 
-  vec2 s = resolution / sharpness;
+  vec2 s = resolution / 8.;
   float ix = floor( st.x * s.x + 0.5 ) / s.x;
   float iy = floor( st.y * s.y + 0.5 ) / s.y;
   vec2 ist = vec2( ix, iy );
@@ -83,19 +79,16 @@ void main() {
 
   float pct = 1. - smoothstep( 0.1, 0.4 * ends, d );
 
-  float r = ends2 * sr * fbm( ist * s / 6. + time / 1. );
+  float r = ends2 * fbm( ist * s / 6. + time / 1. );
   float r2 = ends * fbm( ist * s * 1. + time / 5. );
 
   float l = plot( ist, y );
   float randomness = 0.6;
   pct = pct * smoothstep(0., 1. - randomness, r) + smoothstep( 1. - randomness, 1., r + 1. - pow( d, 0.5 ) );
-  // pct = r;
-  // pct = max( pct, l );
   float m = ( 1. - abs( ix ) - r2 * 0.25 );
 
   float darkness = pct * 0.5 * r * ( 1. - smoothstep( 0.95, 1., abs( st.x ) ) );
   darkness = smoothstep( 0., 1.5 + ( 1. - ends2 ) + m + l * r, darkness * r + l * r * 0.5 );
-  darkness = sr * darkness + ( 1. - sr ) * 0.5;
 
   float mid = ( m * 0.75 + 1. - d ) * 0.5;
   mid = mid * r2 + smoothstep( 0.6, 0.9, r2 ) * r2 * 0.5;
@@ -108,4 +101,5 @@ void main() {
   color = mid * HL + ( 1. - mid ) * color;
 
   gl_FragColor = vec4( color, 1.0 );
+  // gl_FragColor = vec4( r, 0., 0., 1.0 );
 }

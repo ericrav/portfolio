@@ -6,6 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = {
   devtool: '#cheap-module-eval-source-map',
   entry: [
+    './js/index',
+    './styles/main.scss',
     'webpack-dev-server/client?http://0.0.0.0:8080',
     'react-hot-loader/patch',
     'webpack/hot/dev-server'
@@ -32,7 +34,8 @@ const config = {
         use: [{
           loader: 'babel-loader',
         }],
-      }
+      },
+      { test: /\.s?css$/, use: ['style-loader', 'css-loader', 'sass-loader'] }
     ]
   },
   devServer: {

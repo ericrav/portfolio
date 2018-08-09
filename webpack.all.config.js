@@ -4,10 +4,6 @@ require('babel-polyfill');
 // general config stuff (not complete by itself)
 var config = {
   context: path.resolve(__dirname, 'src'),
-  entry: [
-    './js/index',
-    './styles/main.scss'
-  ],
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/',
@@ -35,7 +31,6 @@ var config = {
         test: /\.(txt|glsl|frag|vert)$/,
         use: 'raw-loader'
       },
-      { test: /\.s?css$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
       {
         test: /\.yaml$/,
         use: ['json-loader', 'yaml-loader']

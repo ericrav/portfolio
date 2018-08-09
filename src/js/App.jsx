@@ -3,8 +3,6 @@ import Heading from './components/Heading';
 import Project from './components/Project';
 import content from '../content.yaml';
 
-console.log(content);
-
 class App extends Component {
 
   render() {
@@ -13,7 +11,7 @@ class App extends Component {
         {/*<div className="gallery" style="display: none;"><div className="gallery__image"></div></div>*/}
         <div className="container">
           <Heading H='h1' freq={110}>Eric Rabinowitz</Heading>
-          <p>I am a full-stack developer and creative coder based in Atlanta, where I also studied Computer Science and Industrial Design at Georgia Tech. My primary tools are React, NodeJS, and Processing, and I am currently exploring more WebGL.</p>
+          <p>I am a full-stack developer and creative coder based in Atlanta, where I also studied Computer Science and minored in Industrial Design at Georgia Tech. My current focus is connecting networks of people and ideas through the use of experimental interfaces both online and in physical space.</p>
 
           <ul className='nav'>
             <li><a href='#EricRabinowitz'><span className='nav__num'>110</span> <strong>Eric Rabinowitz</strong></a></li>

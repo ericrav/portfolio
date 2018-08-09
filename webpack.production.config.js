@@ -5,32 +5,36 @@ const AWS = require('aws-sdk');
 const S3Plugin = require('webpack-s3-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
+const jsdom = require('jsdom');
+const { JSDOM } = jsdom;
+const dom = new JSDOM();
 
 // production-specific additions
 const config = {
   devtool: 'eval',
+  entry: './js/index',
   output: {
     filename: 'js/[name].[chunkhash].js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    libraryTarget: 'umd'
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './index.html'
-    }),
+    new StaticSiteGeneratorPlugin('main', ['/']),
+    // new HtmlWebpackPlugin({
+    //   template: './index.html'
+    // }),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('production'),
+        'NODE_ENV': JSON.stringify('development'),
       }
     }),
     // new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin(),
-    new ExtractTextPlugin({
-      filename: 'styles/styleBundle.css',
-      allChunks: true
-    }),
-    new webpack.DefinePlugin({
-      __DEV__: JSON.stringify(false)
-    })
+    // new webpack.optimize.UglifyJsPlugin(),
+    // new ExtractTextPlugin({
+    //   filename: 'styles/styleBundle.css',
+    //   allChunks: true
+    // }),
   ],
   module: {
     rules: [
@@ -42,21 +46,7 @@ const config = {
         }],
         // include: path.join(__dirname, 'src/js')
       },
-      {
-        test: /\.s?css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', {
-            loader: 'sass-loader',
-            options: {
-              data: '@import \'variables\';',
-              includePaths: [
-                path.resolve(__dirname, 'src/styles/abstracts')
-              ]
-            }
-          }]
-        })
-      }
+      { test: /\.s?css$/, use: ['css-loader', 'sass-loader'] },
     ]
   }
 };
@@ -85,7 +75,7 @@ if (process.env.DEPLOY_TO_S3) {
       Bucket: process.env.S3_BUCKET_NAME,
     },
     cloudfrontInvalidateOptions: {
-      DistributionId: process.env.CLOUDFRONT_DISTRIBUTION_ID,
+      // DistributionId: process.env.CLOUDFRONT_DISTRIBUTION_ID,
       Items: ['/*']
     }
   }));

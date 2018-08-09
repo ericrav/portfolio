@@ -17,7 +17,7 @@ export default Heading;
 class Visual extends React.Component {
 
   componentDidMount() {
-    const gl = this.refs.c.getContext('webgl');
+    const gl = this.refs.c.getContext('webgl', { antialias: true });
     const programInfo = twgl.createProgramInfo(gl, [vs, fs]);
 
     const arrays = {
