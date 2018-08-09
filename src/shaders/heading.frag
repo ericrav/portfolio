@@ -81,9 +81,9 @@ void main() {
   vec2 ist = vec2( ix, iy );
   float d = distance( iy, y );
 
-  float pct = 1. - smoothstep( 0.1, 0.4 * sr, d );
+  float pct = 1. - smoothstep( 0.1, 0.4 * ends, d );
 
-  float r = ends * sr * fbm( ist * s / 6. + time / 2. );
+  float r = ends2 * sr * fbm( ist * s / 6. + time / 1. );
   float r2 = ends * fbm( ist * s * 1. + time / 5. );
 
   float l = plot( ist, y );
@@ -94,7 +94,7 @@ void main() {
   float m = ( 1. - abs( ix ) - r2 * 0.25 );
 
   float darkness = pct * 0.5 * r * ( 1. - smoothstep( 0.95, 1., abs( st.x ) ) );
-  darkness = smoothstep( 0., 1.5 + m + l * r, darkness * r + l * r * 0.5 );
+  darkness = smoothstep( 0., 1.5 + ( 1. - ends2 ) + m + l * r, darkness * r + l * r * 0.5 );
   darkness = sr * darkness + ( 1. - sr ) * 0.5;
 
   float mid = ( m * 0.75 + 1. - d ) * 0.5;

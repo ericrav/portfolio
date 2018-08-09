@@ -10,54 +10,55 @@ projects:
       - UWP
       - GC Speech
       - AWS Comprehend
-  - title: 9to5.tv // Works in Progress
-    url: https://9to5.tv/
+  - title: Knowd
+    url: https://theknowd.com
     cta: View Website
+    text: x
+    tags:
+      - JS
+      - React
+      - Redux
+      - Twilio
+      - AWS Lambda
+      - OrientDB
+  - title: 9to5.tv // Works in Progress
     text: >
       Live-streamed and interactive co-working space that invites online participants into artists’ creative processes and performances.
     tags:
       - JS
       - React
       - WebSockets
-  - title: ScreenLinks
-    text: x
-    tags:
-      - x
-  - title: Knowd
-    url: x
-    cta: x
-    text: x
-    tags:
-      - x
 work:
   - title: LineLabs
-    url: x
-    cta: x
-    text: x
+    url: https://d2c4uq3hxwtz2z.cloudfront.net/
+    cta: Launch Beta
+    text: Linelabs is an online visualization tool that encourages people to discover relationships between dozens of linear urban infrastructure reuse projects around the world. I am building this project for Generator, a nonprofit studio cultivating ideas about the future of cities.
     tags:
-      - x
+      - JS
+      - D3
+      - React
   - title: ScreenLinks
-    url: x
-    cta: x
     text: x
     tags:
-      - x
+      - JS
+      - THREE
+      - GLSL
+      - WebSockets
   - title: Bon Ton
-    url: x
-    cta: x
+    url: http://bontonatl.com/
+    cta: View Website
     text: x
     tags:
       - x
   - title: Bell Jar Logo
-    url: x
-    cta: x
-    text: x
+    text: A webapp allowing a client to generate an always changing logo. Rules are designed by Christopher Knowles.
     tags:
-      - x
+      - P5.JS
+  - title: ROMchip
+    url: http://romchip.org/index.php/romchip-journal
+    cta: View Website
+    text: ROMchip is an academic journal for the critical historical studies of games. The website was created with Streetcat.Media, using Open Journal Systems, a CMS for online journals.
+    tags:
+      - PHP
+      - OJS
 studies:
-  - title: Knowd
-    url: x
-    cta: x
-    text: x
-    tags:
-      - x
