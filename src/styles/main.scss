@@ -3,6 +3,7 @@
 @import 'base/reset.scss';
 
 @import 'components/Heading.scss';
+@import 'components/Project.scss';
 
 html {
   width: 100%;
@@ -57,7 +58,8 @@ p {
   font-size: 1rem;
   max-width: 30rem;
   // margin: 1em auto;
-  margin-left: 2rem;
+  // margin-left: 2rem;
+  margin: 1em auto;
   line-height: 1.45;
   -moz-font-feature-settings: "onum", "kern", "liga", "clig", "calt";
   -ms-font-feature-settings: "onum", "kern", "liga", "clig", "calt";
@@ -73,16 +75,48 @@ p {
 }
 
 ul {
+  padding: 0;
   max-width: 30rem;
   margin: 0.25em auto;
 }
 
-p + ul {
-  margin-top: -0.5em;
+.nav {
+
+  a {
+    box-shadow: none;
+    border-bottom: none;
+    font-size: 0.9rem;
+    color: $captionColor;
+
+    &:hover {
+      color: $linkText;
+    }
+  }
+
+  li {
+    margin: 0;
+  }
+
+  &__num {
+    display: inline-block;
+    width: 3em;
+    font-size: 0.75em;
+    text-align: right;
+  }
+
+
+  @include respond-to('large') {
+    margin: 0;
+    position: fixed;
+    left: 1rem;
+    top: 50%;
+    margin-top: -75px;
+    list-style: none;
+  }
 }
 
 a {
-  color: #2D2A36;
+  color: $linkText;
   text-decoration: none;
   border-bottom: 1px solid $linkColor;
   box-shadow: inset 0 -4px 0 $linkColor;
@@ -94,122 +128,8 @@ a {
   }
 }
 
-h3 {
-  font-size: 1.5rem;
-  font-style: italic;
-  line-height: 1;
-  margin: 2em 0 0;
-}
-
-.project {
-  display: flex;
-  flex-direction: column;
-  margin: 2em 0 0;
-
-  &__title {
-
-    h3 {
-      margin: 0;
-    }
-
-    @include respond-to('large') {
-      flex: 0 0 34rem;
-    }
-  }
-
-  &__content {
-  }
-
-  &__images {
-    display: flex;
-    flex-wrap: wrap;
-    // margin-left: 4rem;
-
-    &__image {
-      flex-shrink: 1;
-      display: inline-block;
-      cursor: pointer;
-      height: 80px;
-      width: auto;
-      margin-right: 0.5em;
-      border: 4px solid transparent;
-      transition: border-color 0.3s ease-out;
-
-      &:hover {
-        border-color: $linkColor;
-        background: $linkColor;
-        img {
-          opacity: 0.66;
-        }
-      }
-
-      &:first-child {
-        margin-left: 0;
-      }
-
-
-      img {
-        display: block;
-        height: 100%;
-        width: auto;
-        transition: opacity 0.3s ease-out;
-      }
-    }
-
-    @include respond-to('large') {
-      flex-wrap: wrap;
-      height: 0;
-      flex: 0 1 20rem;
-
-      &__image:first-child {
-        height: auto;
-        width: 100%;
-
-        img {
-          width: 100%;
-          height: auto;
-        }
-
-        @include respond-to('huge') {
-          width: 300px;
-        }
-
-      }
-    }
-
-  }
-
-  @include respond-to('large') {
-    width: 54rem;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: flex-start;
-
-    &__content {
-    }
-
-    &__images {
-    }
-  }
-}
-
-.project_link {
-  font-size: 0.8em;
-  font-style: italic;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  background: $linkColor;
-}
-
 .container {
   max-width: 34rem;
   margin: 0 auto;
   padding: 1em;
-}
-
-.tags {
-  text-transform: uppercase;
-  color: $captionColor;
-  font-size: 0.8em;
-  letter-spacing: 0.1em;
 }

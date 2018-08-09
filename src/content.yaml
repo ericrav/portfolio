@@ -1,0 +1,63 @@
+projects:
+  - title: Storybooth
+    url: https://storybooth.us/
+    cta: View Website
+    text: x
+    tags:
+      - JS
+      - C#
+      - React
+      - UWP
+      - GC Speech
+      - AWS Comprehend
+  - title: 9to5.tv // Works in Progress
+    url: https://9to5.tv/
+    cta: View Website
+    text: >
+      Live-streamed and interactive co-working space that invites online participants into artists’ creative processes and performances.
+    tags:
+      - JS
+      - React
+      - WebSockets
+  - title: ScreenLinks
+    text: x
+    tags:
+      - x
+  - title: Knowd
+    url: x
+    cta: x
+    text: x
+    tags:
+      - x
+work:
+  - title: LineLabs
+    url: x
+    cta: x
+    text: x
+    tags:
+      - x
+  - title: ScreenLinks
+    url: x
+    cta: x
+    text: x
+    tags:
+      - x
+  - title: Bon Ton
+    url: x
+    cta: x
+    text: x
+    tags:
+      - x
+  - title: Bell Jar Logo
+    url: x
+    cta: x
+    text: x
+    tags:
+      - x
+studies:
+  - title: Knowd
+    url: x
+    cta: x
+    text: x
+    tags:
+      - x

@@ -1,0 +1,62 @@
+.project {
+  margin: 2em 0 0;
+
+  &__title {
+    font-size: 1.5rem;
+    font-style: italic;
+    line-height: 1;
+    margin: 2em 0 0;
+  }
+
+  &__images {
+    display: flex;
+    flex-wrap: wrap;
+    // margin-left: 4rem;
+
+    &__image {
+      flex-shrink: 1;
+      display: inline-block;
+      cursor: pointer;
+      height: 80px;
+      width: auto;
+      margin-right: 0.5em;
+      border: 4px solid transparent;
+      transition: border-color 0.3s ease-out;
+
+      &:hover {
+        border-color: $linkColor;
+        background: $linkColor;
+        img {
+          opacity: 0.66;
+        }
+      }
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+
+      img {
+        display: block;
+        height: 100%;
+        width: auto;
+        transition: opacity 0.3s ease-out;
+      }
+    }
+  }
+
+  &__link {
+    font-size: 0.8em;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: $linkColor;
+  }
+
+  &__tags {
+    text-transform: uppercase;
+    color: $captionColor;
+    font-size: 0.8em;
+    letter-spacing: 0.1em;
+  }
+}

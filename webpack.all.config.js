@@ -31,7 +31,15 @@ var config = {
       { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, use: 'file-loader?mimetype=application/font-woff' },
       { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, use: 'file-loader?mimetype=application/octet-stream' },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, use: 'file-loader' },
-      { test: /\.s?css$/, use: ['style-loader', 'css-loader', 'sass-loader'] }
+      {
+        test: /\.(txt|glsl|frag|vert)$/,
+        use: 'raw-loader'
+      },
+      { test: /\.s?css$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
+      {
+        test: /\.yaml$/,
+        use: ['json-loader', 'yaml-loader']
+      }
     ]
   }
 };
