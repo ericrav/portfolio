@@ -28,6 +28,15 @@ const template = (htmlRenderedByReact, assets) => `
   <body ontouchstart="">
     <div id='app'>${htmlRenderedByReact}</div>
     <script src='${assets.main}'></script>
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-48127888-4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments)};
+      gtag('js', new Date());
+
+      gtag('config', 'UA-48127888-4');
+    </script>
   </body>
   </html>
 `;
