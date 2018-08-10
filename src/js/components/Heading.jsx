@@ -3,9 +3,31 @@ import * as twgl from 'twgl.js';
 import vs from '../../shaders/heading.vert';
 import fs from '../../shaders/heading.frag';
 
-const Heading = ({ H='h1', children, freq=110 }) => {
+let now;
+const Heading = ({ H='h1', open, children, freq=110, toggle }) => {
+
+  const onClick = () => {
+    const scroll = (t) => {
+      if (!now) now = t;
+      const el = document.getElementById(children.replace(' ', ''));
+      window.scroll(0, el.offsetTop);
+
+      if (t - now > 200) {
+        now = false;
+      } else {
+        window.requestAnimationFrame(scroll);
+      }
+    };
+    if (open) {
+      window.scroll(0, 0);
+    } else {
+      window.requestAnimationFrame(scroll);
+    }
+    toggle();
+  };
+
   return (
-    <div className='heading' id={children.replace(' ', '')}>
+    <div onClick={onClick} className={'heading' + (open ? '' : ' heading--closed')} id={children.replace(' ', '')}>
       <Visual freq={freq} />
       <H className='heading__text'>{children}</H>
     </div>

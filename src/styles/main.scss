@@ -48,6 +48,11 @@ h3 {
   font-feature-settings: "kern", "liga", "clig", "calt", "dlig";
 }
 
+.section {
+  overflow: hidden;
+  transition: max-height 0.2s ease-out, opacity 0.2s ease-out;
+}
+
 .gallery {
   position: fixed;
   z-index: 100;
