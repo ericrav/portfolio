@@ -37,12 +37,11 @@
     margin-top: -0.1em;
     text-align: center;
     transition: opacity 1s ease-in;
-  }
 
-  &:hover {
-    .heading__text {
+    &:hover {
       opacity: 0;
       transition: opacity 2s ease-in;
     }
   }
+
 }

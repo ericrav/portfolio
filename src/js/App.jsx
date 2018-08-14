@@ -74,7 +74,7 @@ class App extends Component {
 
             <h3>Colophon</h3>
             <p>Typeset in <a target='_blank' href='https://www.typejockeys.com/font/henriette'>Henriette</a> from Typejockeys.</p>
-            <p>The code for this website is on <a target='_blank' href='https://github.com/ericrav/portfolio'>GitHub</a>.</p>
+            <p><a href='#EricRabinowitz'>Eric Rabinowitz</a> built this website, in 2018, with React and Webpack. The code for this website is on <a target='_blank' href='https://github.com/ericrav/portfolio'>GitHub</a>.</p>
           </Section>
 
         </div>
